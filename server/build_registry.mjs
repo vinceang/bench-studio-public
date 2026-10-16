@@ -26,6 +26,9 @@ const ROSTER = [
   { id: "fal-ai/flux-2-pro",                          kind: "image", lane: "t2i", label: "FLUX.2 pro",     vendor: "Black Forest Labs", pair: "fal-ai/flux-2-pro/edit" },
   { id: "fal-ai/nano-banana-pro",                     kind: "image", lane: "t2i", label: "Nano Banana Pro",vendor: "Google",   pair: "fal-ai/nano-banana-pro/edit" },
   { id: "fal-ai/nano-banana-2",                       kind: "image", lane: "t2i", label: "Nano Banana 2",  vendor: "Google",   pair: "fal-ai/nano-banana-2/edit" },
+  // Sketch tier. Sub-2s and cheap, but its schema has NO resolution control —
+  // use it to explore compositions, not to make a keyframe you will animate.
+  { id: "google/nano-banana-lite",                    kind: "image", lane: "t2i", label: "Nano Banana Lite",vendor: "Google",  tier: "fastest", pair: "google/nano-banana-lite/edit" },
   { id: "openai/gpt-image-2",                         kind: "image", lane: "t2i", label: "GPT Image 2",    vendor: "OpenAI",   pair: "openai/gpt-image-2/edit" },
   { id: "bytedance/seedream/v5/pro/text-to-image",    kind: "image", lane: "t2i", label: "Seedream 5 pro", vendor: "ByteDance",pair: "bytedance/seedream/v5/pro/edit" },
   { id: "alibaba/qwen-image-3/text-to-image",         kind: "image", lane: "t2i", label: "Qwen Image 3",   vendor: "Alibaba",  pair: "alibaba/qwen-image-3/edit" },
@@ -35,6 +38,7 @@ const ROSTER = [
   // --- image from your image ---
   { id: "fal-ai/nano-banana-pro/edit",                kind: "image", lane: "i2i", label: "Nano Banana Pro edit", vendor: "Google" },
   { id: "fal-ai/nano-banana-2/edit",                  kind: "image", lane: "i2i", label: "Nano Banana 2 edit",   vendor: "Google" },
+  { id: "google/nano-banana-lite/edit",               kind: "image", lane: "i2i", label: "Nano Banana Lite edit",vendor: "Google" },
   { id: "openai/gpt-image-2/edit",                    kind: "image", lane: "i2i", label: "GPT Image 2 edit",     vendor: "OpenAI" },
   { id: "bytedance/seedream/v5/pro/edit",             kind: "image", lane: "i2i", label: "Seedream 5 edit",      vendor: "ByteDance" },
   { id: "alibaba/qwen-image-3/edit",                  kind: "image", lane: "i2i", label: "Qwen Image 3 edit",    vendor: "Alibaba" },
@@ -46,6 +50,7 @@ const ROSTER = [
   { id: "fal-ai/kling-video/v3/pro/text-to-video",        kind: "video", lane: "t2v", label: "Kling 3 pro",    vendor: "Kuaishou",  pair: "fal-ai/kling-video/v3/pro/image-to-video" },
   { id: "bytedance/seedance-2.5/text-to-video",           kind: "video", lane: "t2v", label: "Seedance 2.5",   vendor: "ByteDance", pair: "bytedance/seedance-2.5/image-to-video" },
   { id: "bytedance/seedance-2.0/fast/text-to-video",      kind: "video", lane: "t2v", label: "Seedance 2 fast",vendor: "ByteDance", pair: "bytedance/seedance-2.0/reference-to-video" },
+  { id: "bytedance/seedance-2.0/text-to-video",           kind: "video", lane: "t2v", label: "Seedance 2",     vendor: "ByteDance", pair: "bytedance/seedance-2.0/reference-to-video" },
   { id: "minimax/h3/text-to-video",                       kind: "video", lane: "t2v", label: "Hailuo H3",      vendor: "MiniMax",   pair: "minimax/h3/image-to-video" },
   { id: "fal-ai/wan/v2.7/text-to-video",                  kind: "video", lane: "t2v", label: "Wan 2.7",        vendor: "Alibaba",   pair: "wan/v2.6/image-to-video" },
   { id: "fal-ai/veo3.1/fast",                             kind: "video", lane: "t2v", label: "Veo 3.1 fast",   vendor: "Google",    pair: "fal-ai/veo3.1/fast/image-to-video" },

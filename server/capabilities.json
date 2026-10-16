@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generated_at": "2026-08-12T19:02:00.482Z",
-  "schema_generated_at": "2026-08-12T18:57:37.821Z",
+  "generated_at": "2026-08-26T02:43:25.512Z",
+  "schema_generated_at": "2026-08-25T17:08:05.276Z",
   "source": "fal.ai public OpenAPI queue schemas",
   "status_legend": {
     "schema-supported": "Declared by fal's live OpenAPI schema; not necessarily exercised.",
@@ -64,6 +64,20 @@
       "primary_image_field": null,
       "image_arity": null,
       "prompt_profile": true,
+      "researched_input_evidence": null,
+      "confidence": "schema-reports-no-media-input"
+    },
+    {
+      "model_id": "google/nano-banana-lite",
+      "label": "Nano Banana Lite",
+      "vendor": "Google",
+      "output": "image",
+      "lane": "t2i",
+      "inputs": [],
+      "modalities": [],
+      "primary_image_field": null,
+      "image_arity": null,
+      "prompt_profile": false,
       "researched_input_evidence": null,
       "confidence": "schema-reports-no-media-input"
     },
@@ -164,7 +178,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -186,6 +200,30 @@
       "lane": "i2i",
       "inputs": [
         {
+          "field": "pdf_url",
+          "modality": "document",
+          "role": "source",
+          "arity": "single",
+          "required": false,
+          "description": "Optional PDF document to use as input context. Accepts an http(s)/data URL (downloaded and sent inline, max 15MB).",
+          "accepted_type": "string",
+          "item_type": null,
+          "limits": {
+            "min_items": null,
+            "max_items": null,
+            "max_megabytes": 15,
+            "min_seconds": null,
+            "max_seconds": null
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        },
+        {
           "field": "audio_url",
           "modality": "audio",
           "role": "source",
@@ -205,31 +243,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
-            }
-          ]
-        },
-        {
-          "field": "image_urls",
-          "modality": "image",
-          "role": "source",
-          "arity": "multiple",
-          "required": false,
-          "description": "The URLs of the images to use for image-to-image generation or image editing. Optional when at least one of `video_url`, `audio_url`, or `pdf_url` is provided.",
-          "accepted_type": "array",
-          "item_type": "string",
-          "limits": {
-            "min_items": null,
-            "max_items": null,
-            "max_megabytes": null,
-            "min_seconds": null,
-            "max_seconds": null
-          },
-          "provenance": [
-            {
-              "source": "fal-openapi",
-              "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -253,63 +267,19 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
         {
-          "field": "pdf_url",
-          "modality": "document",
-          "role": "source",
-          "arity": "single",
-          "required": false,
-          "description": "Optional PDF document to use as input context. Accepts an http(s)/data URL (downloaded and sent inline, max 15MB).",
-          "accepted_type": "string",
-          "item_type": null,
-          "limits": {
-            "min_items": null,
-            "max_items": null,
-            "max_megabytes": 15,
-            "min_seconds": null,
-            "max_seconds": null
-          },
-          "provenance": [
-            {
-              "source": "fal-openapi",
-              "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
-            }
-          ]
-        }
-      ],
-      "modalities": [
-        "audio",
-        "image",
-        "video",
-        "document"
-      ],
-      "primary_image_field": "image_urls",
-      "image_arity": "multiple",
-      "prompt_profile": true,
-      "researched_input_evidence": "image_urls is an array of image URLs with no published maximum on fal. Google documents the Nano Banana 2 tier as accepting up to 10 object images, up to 4 character-consistency images and up to 3 style references; in practice keep to 2-3. This endpoint additionally accepts video_url, audio_url and pdf_url (15MB each) as extra context, which is unique in this set. References are semantic, not a latent init.",
-      "confidence": "schema-supported"
-    },
-    {
-      "model_id": "openai/gpt-image-2/edit",
-      "label": "GPT Image 2 edit",
-      "vendor": "OpenAI",
-      "output": "image",
-      "lane": "i2i",
-      "inputs": [
-        {
-          "field": "mask_url",
+          "field": "image_urls",
           "modality": "image",
-          "role": "mask",
-          "arity": "single",
+          "role": "source",
+          "arity": "multiple",
           "required": false,
-          "description": "The URL of the mask image to use for the generation. This indicates what part of the image to edit.",
-          "accepted_type": "string",
-          "item_type": null,
+          "description": "The URLs of the images to use for image-to-image generation or image editing. Optional when at least one of `video_url`, `audio_url`, or `pdf_url` is provided.",
+          "accepted_type": "array",
+          "item_type": "string",
           "limits": {
             "min_items": null,
             "max_items": null,
@@ -321,10 +291,71 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
-        },
+        }
+      ],
+      "modalities": [
+        "document",
+        "audio",
+        "video",
+        "image"
+      ],
+      "primary_image_field": "image_urls",
+      "image_arity": "multiple",
+      "prompt_profile": true,
+      "researched_input_evidence": "image_urls is an array of image URLs with no published maximum on fal. Google documents the Nano Banana 2 tier as accepting up to 10 object images, up to 4 character-consistency images and up to 3 style references; in practice keep to 2-3. This endpoint additionally accepts video_url, audio_url and pdf_url (15MB each) as extra context, which is unique in this set. References are semantic, not a latent init.",
+      "confidence": "schema-supported"
+    },
+    {
+      "model_id": "google/nano-banana-lite/edit",
+      "label": "Nano Banana Lite edit",
+      "vendor": "Google",
+      "output": "image",
+      "lane": "i2i",
+      "inputs": [
+        {
+          "field": "image_urls",
+          "modality": "image",
+          "role": "source",
+          "arity": "multiple",
+          "required": false,
+          "description": "The URLs of the images to use for image-to-image generation or image editing.",
+          "accepted_type": "array",
+          "item_type": "string",
+          "limits": {
+            "min_items": null,
+            "max_items": null,
+            "max_megabytes": null,
+            "min_seconds": null,
+            "max_seconds": null
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        }
+      ],
+      "modalities": [
+        "image"
+      ],
+      "primary_image_field": "image_urls",
+      "image_arity": "multiple",
+      "prompt_profile": false,
+      "researched_input_evidence": null,
+      "confidence": "schema-supported"
+    },
+    {
+      "model_id": "openai/gpt-image-2/edit",
+      "label": "GPT Image 2 edit",
+      "vendor": "OpenAI",
+      "output": "image",
+      "lane": "i2i",
+      "inputs": [
         {
           "field": "image_urls",
           "modality": "image",
@@ -345,7 +376,31 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        },
+        {
+          "field": "mask_url",
+          "modality": "image",
+          "role": "mask",
+          "arity": "single",
+          "required": false,
+          "description": "The URL of the mask image to use for the generation. This indicates what part of the image to edit.",
+          "accepted_type": "string",
+          "item_type": null,
+          "limits": {
+            "min_items": null,
+            "max_items": null,
+            "max_megabytes": null,
+            "min_seconds": null,
+            "max_seconds": null
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -386,7 +441,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -427,7 +482,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -468,7 +523,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -553,6 +608,20 @@
       "confidence": "schema-reports-no-media-input"
     },
     {
+      "model_id": "bytedance/seedance-2.0/text-to-video",
+      "label": "Seedance 2",
+      "vendor": "ByteDance",
+      "output": "video",
+      "lane": "t2v",
+      "inputs": [],
+      "modalities": [],
+      "primary_image_field": null,
+      "image_arity": null,
+      "prompt_profile": false,
+      "researched_input_evidence": null,
+      "confidence": "schema-reports-no-media-input"
+    },
+    {
       "model_id": "minimax/h3/text-to-video",
       "label": "Hailuo H3",
       "vendor": "MiniMax",
@@ -593,7 +662,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -671,30 +740,6 @@
       "lane": "i2v",
       "inputs": [
         {
-          "field": "image_url",
-          "modality": "image",
-          "role": "source",
-          "arity": "single",
-          "required": true,
-          "description": "The URL of the start image to use for the generated video.",
-          "accepted_type": "string",
-          "item_type": null,
-          "limits": {
-            "min_items": null,
-            "max_items": null,
-            "max_megabytes": null,
-            "min_seconds": null,
-            "max_seconds": null
-          },
-          "provenance": [
-            {
-              "source": "fal-openapi",
-              "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
-            }
-          ]
-        },
-        {
           "field": "end_image_url",
           "modality": "image",
           "role": "end-frame",
@@ -714,7 +759,31 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        },
+        {
+          "field": "image_url",
+          "modality": "image",
+          "role": "source",
+          "arity": "single",
+          "required": true,
+          "description": "The URL of the start image to use for the generated video.",
+          "accepted_type": "string",
+          "item_type": null,
+          "limits": {
+            "min_items": null,
+            "max_items": null,
+            "max_megabytes": null,
+            "min_seconds": null,
+            "max_seconds": null
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -736,14 +805,14 @@
       "lane": "i2v",
       "inputs": [
         {
-          "field": "elements",
-          "modality": "mixed",
-          "role": "source",
-          "arity": "multiple",
-          "required": false,
-          "description": "Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.",
-          "accepted_type": "array",
-          "item_type": "object",
+          "field": "start_image_url",
+          "modality": "image",
+          "role": "start-frame",
+          "arity": "single",
+          "required": true,
+          "description": "URL of the image to be used for the video",
+          "accepted_type": "string",
+          "item_type": null,
           "limits": {
             "min_items": null,
             "max_items": null,
@@ -755,7 +824,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -779,19 +848,19 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
         {
-          "field": "start_image_url",
-          "modality": "image",
-          "role": "start-frame",
-          "arity": "single",
-          "required": true,
-          "description": "URL of the image to be used for the video",
-          "accepted_type": "string",
-          "item_type": null,
+          "field": "elements",
+          "modality": "mixed",
+          "role": "source",
+          "arity": "multiple",
+          "required": false,
+          "description": "Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.",
+          "accepted_type": "array",
+          "item_type": "object",
           "limits": {
             "min_items": null,
             "max_items": null,
@@ -803,14 +872,14 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
       ],
       "modalities": [
-        "mixed",
-        "image"
+        "image",
+        "mixed"
       ],
       "primary_image_field": "start_image_url",
       "image_arity": "single",
@@ -845,7 +914,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -869,7 +938,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -910,7 +979,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -934,7 +1003,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -975,7 +1044,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -999,7 +1068,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -1041,7 +1110,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -1082,7 +1151,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
@@ -1104,30 +1173,6 @@
       "lane": "r2v",
       "inputs": [
         {
-          "field": "audio_urls",
-          "modality": "audio",
-          "role": "source",
-          "arity": "multiple",
-          "required": false,
-          "description": "Reference audio to guide video generation. Refer to them in the prompt as @Audio1, @Audio2, etc. Supported formats: MP3, WAV. Up to 3 files, combined duration must not exceed 15 seconds. Max 15 MB per file.If audio is provided, at least one reference image or video is required.",
-          "accepted_type": "array",
-          "item_type": "string",
-          "limits": {
-            "min_items": null,
-            "max_items": 3,
-            "max_megabytes": 15,
-            "min_seconds": null,
-            "max_seconds": null
-          },
-          "provenance": [
-            {
-              "source": "fal-openapi",
-              "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
-            }
-          ]
-        },
-        {
           "field": "image_urls",
           "modality": "image",
           "role": "source",
@@ -1147,7 +1192,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -1171,15 +1216,39 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        },
+        {
+          "field": "audio_urls",
+          "modality": "audio",
+          "role": "source",
+          "arity": "multiple",
+          "required": false,
+          "description": "Reference audio to guide video generation. Refer to them in the prompt as @Audio1, @Audio2, etc. Supported formats: MP3, WAV. Up to 3 files, combined duration must not exceed 15 seconds. Max 15 MB per file.If audio is provided, at least one reference image or video is required.",
+          "accepted_type": "array",
+          "item_type": "string",
+          "limits": {
+            "min_items": null,
+            "max_items": 3,
+            "max_megabytes": 15,
+            "min_seconds": null,
+            "max_seconds": null
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
       ],
       "modalities": [
-        "audio",
         "image",
-        "video"
+        "video",
+        "audio"
       ],
       "primary_image_field": "image_urls",
       "image_arity": "multiple",
@@ -1214,31 +1283,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
-            }
-          ]
-        },
-        {
-          "field": "reference_audio_urls",
-          "modality": "audio",
-          "role": "reference",
-          "arity": "multiple",
-          "required": false,
-          "description": "URLs of reference audio clips (2-15 seconds each, combined duration at most 15 seconds), referenced in the prompt as Audio 1, Audio 2, and so on. Audio cannot be the only reference input; provide at least one reference image or video with it. Reference images, videos, and audio clips must add up to at most 12 files.",
-          "accepted_type": "array",
-          "item_type": "string",
-          "limits": {
-            "min_items": null,
-            "max_items": 3,
-            "max_megabytes": null,
-            "min_seconds": 2,
-            "max_seconds": 15
-          },
-          "provenance": [
-            {
-              "source": "fal-openapi",
-              "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         },
@@ -1262,15 +1307,39 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        },
+        {
+          "field": "reference_audio_urls",
+          "modality": "audio",
+          "role": "reference",
+          "arity": "multiple",
+          "required": false,
+          "description": "URLs of reference audio clips (2-15 seconds each, combined duration at most 15 seconds), referenced in the prompt as Audio 1, Audio 2, and so on. Audio cannot be the only reference input; provide at least one reference image or video with it. Reference images, videos, and audio clips must add up to at most 12 files.",
+          "accepted_type": "array",
+          "item_type": "string",
+          "limits": {
+            "min_items": null,
+            "max_items": 3,
+            "max_megabytes": null,
+            "min_seconds": 2,
+            "max_seconds": 15
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
       ],
       "modalities": [
         "image",
-        "audio",
-        "video"
+        "video",
+        "audio"
       ],
       "primary_image_field": "reference_image_urls",
       "image_arity": "multiple",
@@ -1285,30 +1354,6 @@
       "output": "video",
       "lane": "r2v",
       "inputs": [
-        {
-          "field": "reference_image_urls",
-          "modality": "image",
-          "role": "reference",
-          "arity": "multiple",
-          "required": false,
-          "description": "Reference image URLs for character/object appearance. Pass multiple images for multi-subject generation. Max 20 MB each.",
-          "accepted_type": "array",
-          "item_type": "string",
-          "limits": {
-            "min_items": null,
-            "max_items": null,
-            "max_megabytes": 20,
-            "min_seconds": null,
-            "max_seconds": null
-          },
-          "provenance": [
-            {
-              "source": "fal-openapi",
-              "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
-            }
-          ]
-        },
         {
           "field": "reference_video_urls",
           "modality": "video",
@@ -1329,14 +1374,38 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
+            }
+          ]
+        },
+        {
+          "field": "reference_image_urls",
+          "modality": "image",
+          "role": "reference",
+          "arity": "multiple",
+          "required": false,
+          "description": "Reference image URLs for character/object appearance. Pass multiple images for multi-subject generation. Max 20 MB each.",
+          "accepted_type": "array",
+          "item_type": "string",
+          "limits": {
+            "min_items": null,
+            "max_items": null,
+            "max_megabytes": 20,
+            "min_seconds": null,
+            "max_seconds": null
+          },
+          "provenance": [
+            {
+              "source": "fal-openapi",
+              "status": "schema-supported",
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
       ],
       "modalities": [
-        "image",
-        "video"
+        "video",
+        "image"
       ],
       "primary_image_field": "reference_image_urls",
       "image_arity": "multiple",
@@ -1371,7 +1440,7 @@
             {
               "source": "fal-openapi",
               "status": "schema-supported",
-              "checked_at": "2026-08-12T18:57:37.821Z"
+              "checked_at": "2026-08-25T17:08:05.276Z"
             }
           ]
         }
